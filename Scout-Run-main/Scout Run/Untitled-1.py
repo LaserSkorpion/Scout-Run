@@ -4,8 +4,7 @@ os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (10, 50)
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('Scout Run')
-bg_image = pygame.image.load('dbcr.png')
-bg_image = pygame.transform.scale(bg_image,(800,600))
+bg_image = pygame.image.load('dbcr.png').convert()
 bg_x = 0
 dino_img = pygame.image.load('run11.png').convert_alpha()
 dino_img = pygame.transform.scale(dino_img, (200, 200))
@@ -22,7 +21,7 @@ cactus_x = 800
 cactus_y = 450
 cactus_speed = 5
 score = 0
-score_needed_to_win = 5
+score_needed_to_win = 25
 def show_game_won():
     font = pygame.font.SysFont('Arial', 50)
     text = font.render('You win!', True, (0, 255, 0))
@@ -30,7 +29,7 @@ def show_game_won():
     screen.blit(text, text_rect)
 def show_game_over():
     font = pygame.font.SysFont('Arial', 50)
-    text = font.render('You lose!', True, (255, 0, 0))
+    text = font.render('You lose!', True, (0, 255, 0))
     text_rect = text.get_rect(center=(screen.get_width()/2, screen.get_height()/2))
     screen.blit(text, text_rect)
 font = pygame.font.SysFont('Arial', 36)
@@ -52,7 +51,7 @@ while run:
                 run = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    dino_y_change = -30
+                    dino_y_change = -10
         dino_y += dino_y_change
         if dino_y < 250:
             dino_y = 250
