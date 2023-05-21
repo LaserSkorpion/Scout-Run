@@ -65,14 +65,29 @@ while run:
             score += 1
             score_text = font.render('Score: ' + str(score), True, (255, 255, 255))
         if cactus_x <= dino_x + 50 <= cactus_x + 100 and cactus_y <= dino_y + 100 <= cactus_y + 50:
-            finish = True
+            pygame.time.delay(5000)
             show_game_over()
-            run = False
-            pygame.time.delay(3000)
+            # run = False
+            
+            finish = True
         if score >= score_needed_to_win:
             finish = True
             show_game_won()
-            run = False
-            pygame.time.delay(3000)
+            # run = False
+            pygame.time.delay(5000)
         pygame.display.update()
+    else:
+        dino_img = pygame.image.load('run11.png').convert_alpha()
+        dino_img = pygame.transform.scale(dino_img, (200, 200))
+        cactus_img = pygame.image.load('spy1.png').convert_alpha()
+        cactus_img = pygame.transform.scale(cactus_img, (150, 150))
+        dino_x = 50
+        dino_y = 380
+        dino_y_change = 0
+        cactus_x = 800
+        cactus_y = 450
+        cactus_speed = 5
+        score = 0
+        bg_x = 0
+        finish = False
     clock.tick(60)
